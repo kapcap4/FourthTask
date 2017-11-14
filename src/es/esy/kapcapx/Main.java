@@ -1,5 +1,8 @@
 package es.esy.kapcapx;
 
+import java.text.ParseException;
+import java.util.Date;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -17,5 +20,22 @@ public class Main {
             Если далее по коду объект на который указывает ссыдка c2 не будет использоваться, то он тоже станет кандидатом на уничтожение
             Сборщик мусора отслеживает ссылки на объекты и если они null или более не вызываются в коде, то объекты на которые указывали эти ссылки будут уничтожены
         */
+        Converter converter = new Converter();
+        Date date = new Date();
+        System.out.println(converter.convert(5465435486684l));
+        System.out.println("Номер метода который был вызван последним [" + converter.getLastMethod() + "]");
+        System.out.println(converter.convert(5465435486684l, "yyyy.MM.dd"));
+        System.out.println("Номер метода который был вызван последним [" + converter.getLastMethod() + "]");
+        System.out.println(converter.convert(2020, 12, 13));
+        System.out.println("Номер метода который был вызван последним [" + converter.getLastMethod() + "]");
+        System.out.println(converter.convert(2012));
+        System.out.println("Номер метода который был вызван последним [" + converter.getLastMethod() + "]");
+        try {
+            System.out.println(converter.convert("2018.11.13", "yyyy.MM.dd"));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Номер метода который был вызван последним [" + converter.getLastMethod() + "]");
+
     }
 }
